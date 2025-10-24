@@ -1,12 +1,12 @@
 # Trip Fuel Cost Estimator
 
-This Fuel Cost Estimator is the application to estimate the cost fuel for the trip. 
+This Fuel Cost Estimator is the application to estimate the cost fuel for the trip.   
 This application is estimate based on the distance (km), car fuel efficiency (km/L), fuel price (RM/L).
 
 
-Input : distance (km), car fuel efficiency (km/L), fuel price (RM/L).
-Process : total fuel cost =  (distance / car fuel efficiency) * fuel price 
-Output :total fuel cost
+Input : distance (km), car fuel efficiency (km/L), fuel price (RM/L).  
+Process : total fuel cost =  (distance / car fuel efficiency) * fuel price   
+Output :total fuel cost  
 
 Widget list used:
 1. Scaffold
