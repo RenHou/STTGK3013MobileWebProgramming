@@ -27,6 +27,7 @@ Basic validation approach:
 2. The fuel efficiency is validate by ensuring the TextField of fuel efficiency is not empty or less than 0 
 
 
+            <img width="120" height="74" alt="image" src="https://github.com/user-attachments/assets/b9ad69d3-262e-4f3e-8f23-871c4fc50284" />
 
                                                 _________________________________
                                                     (TAN HOU REN 301235)
