@@ -217,9 +217,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
           ),
           TextButton(
             onPressed: () {
-              Navigator.pop(context);
+              Navigator.pop(context);// close the comfimation dialog
             },
-            child: Text("Cancle"),
+            child: Text("Cancel"),
           ),
         ],
       ),
@@ -272,14 +272,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   isloading = false;
                 });
               }
-              Navigator.pop(context); //close the registration screen
+              
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
                   content: Text('Registration Successful'),
                   backgroundColor: Colors.green,
                 ),
               );
-              Navigator.push(
+              Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(builder: (context) => const LoginScreen()),
               );

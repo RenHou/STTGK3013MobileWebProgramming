@@ -2,14 +2,13 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:pawpal/loginscreen.dart';
 import 'package:pawpal/mainscreen.dart';
 import 'package:pawpal/myconfig.dart';
 import 'package:pawpal/user.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SplashScreen extends StatefulWidget {
-  
-
   const SplashScreen({super.key});
 
   @override
@@ -76,38 +75,18 @@ class _SplashScreenState extends State<SplashScreen> {
                 } else {
                   if (!mounted) return;
                   Future.delayed(Duration(seconds: 3), () {
-                    User user = User(
-                      userId: "0",
-                      name: "guest",
-                      email: "guest@gmail.com",
-                      password: "guest",
-                      phone: "0123456789",
-                      regDate: "0000-00-00",
-                    );
                     Navigator.pushReplacement(
                       context,
-                      MaterialPageRoute(
-                        builder: (context) => MainScreen(user: user),
-                      ),
+                      MaterialPageRoute(builder: (context) => LoginScreen()),
                     );
                   });
                 }
               } else {
                 if (!mounted) return;
                 Future.delayed(Duration(seconds: 3), () {
-                  User user = User(
-                    userId: "0",
-                    name: "guest",
-                    email: "guest@gmail.com",
-                    password: "guest",
-                    phone: "0123456789",
-                    regDate: "0000-00-00",
-                  );
                   Navigator.pushReplacement(
                     context,
-                    MaterialPageRoute(
-                      builder: (context) => MainScreen(user: user),
-                    ),
+                    MaterialPageRoute(builder: (context) => LoginScreen()),
                   );
                 });
               }
@@ -115,17 +94,9 @@ class _SplashScreenState extends State<SplashScreen> {
       } else {
         if (!mounted) return;
         Future.delayed(Duration(seconds: 3), () {
-          User user = User(
-            userId: "0",
-            name: "guest",
-            email: "guest@gmail.com",
-            password: "guest",
-            phone: "0123456789",
-            regDate: "0000-00-00",
-          );
           Navigator.pushReplacement(
             context,
-            MaterialPageRoute(builder: (context) => MainScreen(user: user)),
+            MaterialPageRoute(builder: (context) => LoginScreen()),
           );
         });
       }

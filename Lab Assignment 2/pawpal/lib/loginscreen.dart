@@ -144,9 +144,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                   TextButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                      Navigator.push(
+                    onPressed: () {              
+                      Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
                           builder: (context) => const RegisterScreen(),
@@ -217,9 +216,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   content: Text("Login successful"),
                   backgroundColor: Colors.green,
                 ),
-              );
-              Navigator.pop(context);
-              // Navigate to home page or dashboard
+              );            
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(

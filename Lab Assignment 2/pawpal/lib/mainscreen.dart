@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:pawpal/loginscreen.dart';
 import 'package:pawpal/user.dart';
 
 class MainScreen extends StatefulWidget {
@@ -23,22 +22,9 @@ class _MainScreenState extends State<MainScreen> {
         ),
       ),
       body: Center(
-        child: widget.user!.userId == "0"
-            ? Text('Welcome to PawPal!')
-            : Text("Hello, ${widget.user!.name}!. Welcome back to PawPal !"),
+        child: Text("Hello, ${widget.user!.name}!. Welcome back to PawPal !"),
       ),
 
-      floatingActionButton: ElevatedButton(
-        onPressed: () {
-          if (widget.user!.userId == "0") {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => LoginScreen()),
-            );
-          }
-        },
-        child: Icon(Icons.add),
-      ),
     );
   }
 }
