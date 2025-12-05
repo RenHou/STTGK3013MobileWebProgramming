@@ -104,9 +104,6 @@ pawpal/
 POST /pawpal/api/submit_pet.php
 ```
 
-### **Content-Type**
-
-`application/x-www-form-urlencoded`
 
 ### **Required Fields**
 
