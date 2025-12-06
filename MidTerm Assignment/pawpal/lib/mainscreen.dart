@@ -27,7 +27,7 @@ class _MainScreenState extends State<MainScreen> {
   @override
   void initState() {
     super.initState();
-    loadServices("");
+    loadPets("");
   }
 
   @override
@@ -90,6 +90,9 @@ class _MainScreenState extends State<MainScreen> {
                       child: ListView.builder(
                         itemCount: listPets.length,
                         itemBuilder: (BuildContext context, int index) {
+                          String imagePath = listPets[index]!.imagePaths!; // in Json format 
+                          String firstImage = jsonDecode(imagePath)[0];  // example: uploads/pet_1_0.png
+                          print(jsonDecode(imagePath)[0]);
                           return Card(
                             elevation: 4,
                             margin: const EdgeInsets.symmetric(
@@ -113,7 +116,7 @@ class _MainScreenState extends State<MainScreen> {
                                           width * 0.22, // balanced aspect ratio
                                       color: Colors.grey[200],
                                       child: Image.network(
-                                        '${Myconfig.baseURL}/pawpal/api/uploads/pet_${listPets[index]!.petId!}_0.png',
+                                        '${Myconfig.baseURL}/pawpal/api/$firstImage',
                                         fit: BoxFit.cover,
                                         errorBuilder:
                                             (context, error, stackTrace) {
@@ -224,7 +227,7 @@ class _MainScreenState extends State<MainScreen> {
     );
   }
 
-  void submitPet() {
+  void submitPet()async {
     if (widget.user!.userId == "0") {
       Navigator.push(
         context,
@@ -237,16 +240,17 @@ class _MainScreenState extends State<MainScreen> {
         ),
       );
     } else {
-      Navigator.push(
+      await Navigator.push(
         context,
         MaterialPageRoute(
           builder: (context) => SubmitPetScreen(user: widget.user),
         ),
       );
+      loadPets("");
     }
   }
 
-  void loadServices(String searchQuery) {
+  void  loadPets(String searchQuery) {
     listPets.clear();
     setState(() {
       status = "Loading...";
@@ -297,6 +301,8 @@ class _MainScreenState extends State<MainScreen> {
     showDialog(
       context: context,
       builder: (BuildContext context) {
+        String imagePath = listPets[index]!.imagePaths!;
+        String firstImage = jsonDecode(imagePath)[0];
         return AlertDialog(
           title: Text(listPets[index]!.petName.toString()),
           content: SizedBox(
@@ -307,7 +313,7 @@ class _MainScreenState extends State<MainScreen> {
                 children: [
                   SizedBox(
                     child: Image.network(
-                      '${Myconfig.baseURL}/pawpal/api/uploads/pet_${listPets[index]!.petId!}_0.png',
+                      '${Myconfig.baseURL}/pawpal/api/$firstImage',
                       fit: BoxFit.cover,
                       errorBuilder: (context, error, stackTrace) {
                         return const Icon(

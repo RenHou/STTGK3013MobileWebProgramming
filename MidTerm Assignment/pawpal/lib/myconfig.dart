@@ -1,3 +1,3 @@
 class Myconfig {
-  static String baseURL = "http://10.117.0.85";
+  static String baseURL = "http://10.117.139.235";
 }

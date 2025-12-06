@@ -46,7 +46,7 @@ try {
 
         //Update the pet record with JSON-encoded image paths
         $imagePathsJson = json_encode($imagePaths);
-        $sqlUpdate = "UPDATE tbl_pets SET image_paths='$imagePathsJson' WHERE user_id='$last_id'";
+        $sqlUpdate = "UPDATE tbl_pets SET image_paths='$imagePathsJson' WHERE pet_id='$last_id'";
         $conn->query($sqlUpdate);
 
         $response = array('success' => 'true', 'message' => 'Pet submitted successfully');
@@ -56,7 +56,7 @@ try {
         sendJsonResponse($response);
     }
 } catch (Exception $e) {
-    $response = array('stsuccessatus' => 'false', 'message' => $e->getMessage());
+    $response = array('success' => 'false', 'message' => $e->getMessage());
     sendJsonResponse($response);
 }
 

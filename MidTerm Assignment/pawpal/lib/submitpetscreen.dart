@@ -3,7 +3,6 @@ import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:http/http.dart' as http;
 import 'package:image_cropper/image_cropper.dart';
@@ -495,7 +494,8 @@ class _SubmitPetScreenState extends State<SubmitPetScreen> {
           if (response.statusCode == 200) {
             var jsonResponse = response.body;
             var resarray = jsonDecode(jsonResponse);
-            if (resarray['status'] == 'success') {
+            print(resarray['success']);
+            if (resarray['success'] == 'true') {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
                   content: Text(resarray['message']),
