@@ -31,7 +31,7 @@ The backend is built using **PHP (XAMPP)** and connects to **MySQL** to manage u
 
 ### **2. Installation**
 
-1. Clone or copy this API folder into:
+1. Clone or copy this Server folder into:
 
    ```
    htdocs/pawpal/api/
