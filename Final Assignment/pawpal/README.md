@@ -1,5 +1,3 @@
-Here is the updated, comprehensive `README.md`. I have integrated the **Server-Side Installation** steps, detailed **Live API Endpoints**, and expanded the **Flutter configuration** section into the previous documentation.
-
 ---
 
 # PawPal – Flutter Pet Care Companion App
