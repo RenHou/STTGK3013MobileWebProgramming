@@ -24,7 +24,7 @@ Here is the updated, comprehensive `README.md`. I have integrated the **Server-S
 ### **1. Requirements**
 
 * **Frontend:** Flutter SDK (3.0.0+)
-* **Backend:** XAMPP/WAMP (PHP 7.4+ & MySQL)
+* **Backend:** XAMPP (PHP 7.4+ & MySQL)
 * **Plugins:** * `geolocator`, `image_picker`, `image_cropper`, `webview_flutter`, `shared_preferences`.
 
 ### **2. Local Installation**
