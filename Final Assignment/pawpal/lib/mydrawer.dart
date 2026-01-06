@@ -56,7 +56,7 @@ class _MyDrawerState extends State<MyDrawer> {
               decoration: const BoxDecoration(color: Color(0xFFFF9800)),
               currentAccountPicture: CircleAvatar(
                 radius: 40,
-                backgroundColor: Colors.orange,
+                backgroundColor: Colors.white,
                 child: ClipOval(
                   child: Image.network(
                     '${Myconfig.baseURL}/pawpal/api/userimages/${widget.user!.userId}.png',
@@ -108,6 +108,53 @@ class _MyDrawerState extends State<MyDrawer> {
             ),
             title: const Text("My Donation"),
             onTap: () {
+              if (widget.user?.userId == '0') {
+                //showdialog
+                showDialog(
+                  context: context,
+                  builder: (_) => AlertDialog(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16),
+                    ),
+                    title: Row(
+                      children: const [
+                        Icon(Icons.lock_outline, color: Color(0xFFFF9800)),
+                        SizedBox(width: 8),
+                        Text("Login Required"),
+                      ],
+                    ),
+                    content: const Text(
+                      "Please login to continue and access this feature.",
+                    ),
+                    actions: [
+                      TextButton(
+                        onPressed: () => Navigator.pop(context),
+                        child: const Text("Cancel"),
+                      ),
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: const Color(0xFFFF9800),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                        onPressed: () {
+                          Navigator.pushReplacement(
+                            context,
+                            AnimatedRoute.slideFromRight(const LoginScreen()),
+                          );
+                        },
+                        child: const Text(
+                          "Login",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
+                    ],
+                  ),
+                );
+
+                return;
+              }
               Navigator.pop(context);
               Navigator.pushReplacement(
                 context,
@@ -119,6 +166,53 @@ class _MyDrawerState extends State<MyDrawer> {
             leading: const Icon(Icons.person, color: Color(0xFFFF9800)),
             title: const Text("Profile"),
             onTap: () async {
+              if (widget.user?.userId == '0') {
+                //showdialog
+                showDialog(
+                  context: context,
+                  builder: (_) => AlertDialog(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16),
+                    ),
+                    title: Row(
+                      children: const [
+                        Icon(Icons.lock_outline, color: Color(0xFFFF9800)),
+                        SizedBox(width: 8),
+                        Text("Login Required"),
+                      ],
+                    ),
+                    content: const Text(
+                      "Please login to continue and access this feature.",
+                    ),
+                    actions: [
+                      TextButton(
+                        onPressed: () => Navigator.pop(context),
+                        child: const Text("Cancel"),
+                      ),
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: const Color(0xFFFF9800),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                        onPressed: () {
+                          Navigator.pushReplacement(
+                            context,
+                            AnimatedRoute.slideFromRight(const LoginScreen()),
+                          );
+                        },
+                        child: const Text(
+                          "Login",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
+                    ],
+                  ),
+                );
+
+                return;
+              }
               Navigator.pop(context);
               await Navigator.push(
                 context,

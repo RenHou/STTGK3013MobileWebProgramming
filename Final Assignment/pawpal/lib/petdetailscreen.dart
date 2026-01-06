@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
+import 'package:pawpal/animated_route.dart';
+import 'package:pawpal/loginscreen.dart';
 import 'package:pawpal/myconfig.dart';
 import 'package:pawpal/mypet.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -128,6 +130,55 @@ class _PetDetailScreenState extends State<PetDetailScreen> {
                 context,
                 text: 'Request to Adopt',
                 onPressed: () {
+                  if (widget.user?.userId == '0') {
+                    //showdialog
+                    showDialog(
+                      context: context,
+                      builder: (_) => AlertDialog(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(16),
+                        ),
+                        title: Row(
+                          children: const [
+                            Icon(Icons.lock_outline, color: Color(0xFFFF9800)),
+                            SizedBox(width: 8),
+                            Text("Login Required"),
+                          ],
+                        ),
+                        content: const Text(
+                          "Please login to continue and access this feature.",
+                        ),
+                        actions: [
+                          TextButton(
+                            onPressed: () => Navigator.pop(context),
+                            child: const Text("Cancel"),
+                          ),
+                          ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: const Color(0xFFFF9800),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                            ),
+                            onPressed: () {
+                              Navigator.pushReplacement(
+                                context,
+                                AnimatedRoute.slideFromRight(
+                                  const LoginScreen(),
+                                ),
+                              );
+                            },
+                            child: const Text(
+                              "Login",
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+
+                    return;
+                  }
                   showAdoptionDialog();
                 },
               ),
@@ -137,6 +188,55 @@ class _PetDetailScreenState extends State<PetDetailScreen> {
                 context,
                 text: 'Donate',
                 onPressed: () {
+                  if (widget.user?.userId == '0') {
+                    //showdialog
+                    showDialog(
+                      context: context,
+                      builder: (_) => AlertDialog(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(16),
+                        ),
+                        title: Row(
+                          children: const [
+                            Icon(Icons.lock_outline, color: Color(0xFFFF9800)),
+                            SizedBox(width: 8),
+                            Text("Login Required"),
+                          ],
+                        ),
+                        content: const Text(
+                          "Please login to continue and access this feature.",
+                        ),
+                        actions: [
+                          TextButton(
+                            onPressed: () => Navigator.pop(context),
+                            child: const Text("Cancel"),
+                          ),
+                          ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: const Color(0xFFFF9800),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                            ),
+                            onPressed: () {
+                              Navigator.pushReplacement(
+                                context,
+                                AnimatedRoute.slideFromRight(
+                                  const LoginScreen(),
+                                ),
+                              );
+                            },
+                            child: const Text(
+                              "Login",
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+
+                    return;
+                  }
                   showDonationDialog();
                 },
               ),
@@ -255,15 +355,15 @@ class _PetDetailScreenState extends State<PetDetailScreen> {
 
   showDonationDialog() {
     // Add this check to prevent self-donation
-  if (widget.pet.userId == widget.user!.userId) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-        content: Text('You cannot donate to your own pet post!'),
-        backgroundColor: Colors.red,
-      ),
-    );
-    return; // Exit the function so the dialog doesn't open
-  }
+    if (widget.pet.userId == widget.user!.userId) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('You cannot donate to your own pet post!'),
+          backgroundColor: Colors.red,
+        ),
+      );
+      return; // Exit the function so the dialog doesn't open
+    }
     // Reset controllers and selection when dialog opens
     donationAmountController.clear();
     reasonController.clear();
@@ -486,27 +586,25 @@ class _PetDetailScreenState extends State<PetDetailScreen> {
   }
 
   Future<void> loadUserProfile() async {
+    final response = await http.get(
+      Uri.parse(
+        '${Myconfig.baseURL}/pawpal/api/getuserdetails.php?userid=${widget.user!.userId}',
+      ),
+    );
 
-      final response = await http.get(
-        Uri.parse(
-          '${Myconfig.baseURL}/pawpal/api/getuserdetails.php?userid=${widget.user!.userId}',
-        ),
-      );
+    if (response.statusCode == 200) {
+      var jsonResponse = jsonDecode(response.body);
+      if (jsonResponse['success'] == true) {
+        User user = User.fromJson(jsonResponse['data'][0]);
 
-      if (response.statusCode == 200) {
-        var jsonResponse = jsonDecode(response.body);
-        if (jsonResponse['success'] == true) {
-          User user = User.fromJson(jsonResponse['data'][0]);
+        SharedPreferences pref = await SharedPreferences.getInstance();
+        await pref.setString('user', jsonEncode(user.toJson()));
 
-          SharedPreferences pref = await SharedPreferences.getInstance();
-          await pref.setString('user', jsonEncode(user.toJson()));
-
-          setState(() {
-            widget.user = user;
-          });
-        }
+        setState(() {
+          widget.user = user;
+        });
       }
-
+    }
   }
 
   Widget _infoRow(String label, String? value) {
