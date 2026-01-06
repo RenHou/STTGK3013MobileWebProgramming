@@ -250,7 +250,7 @@ class _PetDetailScreenState extends State<PetDetailScreen> {
     if (widget.pet.userId == widget.user!.userId) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
-          content: Text('You cannot donate to your own pet!'),
+          content: Text('You cannot adopt your own pet!'),
           backgroundColor: Colors.red,
         ),
       );
@@ -544,8 +544,9 @@ class _PetDetailScreenState extends State<PetDetailScreen> {
 
       var data = jsonDecode(response.body);
 
+      if(!mounted) return;
       Navigator.pop(context); // Close donation dialog
-      Navigator.pop(context); // Close details dialog
+      
 
       if (data['success'] == true) {
         // Reload user profile to get updated wallet balance
@@ -568,7 +569,7 @@ class _PetDetailScreenState extends State<PetDetailScreen> {
         );
       }
     } catch (e) {
-      Navigator.pop(context);
+      if(!mounted) return;
       Navigator.pop(context);
 
       ScaffoldMessenger.of(context).showSnackBar(

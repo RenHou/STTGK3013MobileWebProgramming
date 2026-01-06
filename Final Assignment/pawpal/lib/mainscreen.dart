@@ -40,12 +40,7 @@ class _MainScreenState extends State<MainScreen> {
     loadProfile();
   }
 
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    loadProfile(); // Reload every time dependencies change
-  }
-
+  
   @override
   Widget build(BuildContext context) {
     height = MediaQuery.of(context).size.height;
