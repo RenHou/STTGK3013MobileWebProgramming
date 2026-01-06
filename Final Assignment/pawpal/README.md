@@ -1,200 +1,129 @@
-# Pawpal– Flutter Pet Care Companion App
-
+Here is the updated, comprehensive `README.md`. I have integrated the **Server-Side Installation** steps, detailed **Live API Endpoints**, and expanded the **Flutter configuration** section into the previous documentation.
 
 ---
 
-# 🐾 PawPal API – Backend Documentation
+# PawPal – Flutter Pet Care Companion App
 
-This repository contains the **Flutter Code** and backend API for **PawPal**, a pet adoption & listing app.
-The backend is built using **PHP (XAMPP)** and connects to **MySQL** to manage users, pets, and images.
+**PawPal** is a cross-platform pet management and community support ecosystem. It enables users to manage pet profiles, facilitate adoptions, and contribute to animal welfare through a secure integrated wallet and donation system.
 
 ---
 
 ## 📌 Table of Contents
 
-1. [Project Setup](#project-setup)
-2. [Folder Structure](#folder-structure)
-3. [API Endpoints](#api-endpoints)
-4. [Submit Pet API](#submit-pet-api)
-5. [Sample JSON Request](#sample-json-request)
-6. [Response Format](#response-format)
+1. [Project Setup (Local)](https://www.google.com/search?q=%23local-setup)
+2. [Server-Side Installation (Production)](https://www.google.com/search?q=%23server-side-installation)
+3. [Folder Structure](https://www.google.com/search?q=%23folder-structure)
+4. [API Endpoints](https://www.google.com/search?q=%23api-endpoints)
+5. [Key Features](https://www.google.com/search?q=%23key-features)
+6. [Technical Notes](https://www.google.com/search?q=%23technical-notes)
 
 ---
 
-## 🚀 Project Setup
+## 🚀 Local Setup
 
 ### **1. Requirements**
 
-* XAMPP 
-* MySQL 
-* Flutter  
+* **Frontend:** Flutter SDK (3.0.0+)
+* **Backend:** XAMPP/WAMP (PHP 7.4+ & MySQL)
+* **Plugins:** * `geolocator`, `image_picker`, `image_cropper`, `webview_flutter`, `shared_preferences`.
 
-### **2. Installation**
+### **2. Local Installation**
 
-1. Clone or copy this API folder into:
+1. **Backend:** Copy the API folder to `htdocs/pawpal/api/`.
+2. **Database:** * Create database: `pawpal_db`.
+* Import the provided SQL structure.
 
-   ```
-   htdocs/pawpal/api/
-   ```
 
-2. Import the database:
+3. **Flutter:** Run `flutter pub get` and update `lib/myconfig.dart` with your local IP.
 
-   * Open *phpMyAdmin*
-   * Create a database: **pawpal_db**
-   * Import the SQL file in server->pawpal_db.sql
+---
 
-3. Configure database connection in **dbconnect.php**:
+## 🌐 Server-Side Installation
 
+To deploy PawPal to a live Linux-based web server (Shared Hosting or VPS):
+
+### **1. Database Production Setup**
+
+1. **Create Database:** Use your hosting panel (cPanel/Plesk) to create `canortxw_THR_pawpal_db`.
+2. **Import Schema:** Use **phpMyAdmin** to upload your SQL file.
+3. **User Privileges:** Ensure your DB user has "ALL PRIVILEGES" assigned to the database.
+
+### **2. Backend Deployment**
+
+1. **Upload Files:** Upload all PHP files to `public_html/pawpal/api/`.
+2. **Permissions:** * Create a folder: `api/uploads/`.
+* Set permissions to `755` (or `777` if required by your host) to allow base64 image saving.
+
+
+3. **Production Config:** Update `dbconnect.php` with your live credentials:
 ```php
-<?php
 $servername = "localhost";
-$username   = "root";
-$password   = "";
-$database   = "pawpal";
-
-$conn = new mysqli($servername, $username, $password, $database);
-
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-?>
-```
-
-4. Ensure this folder exists for image uploads:
+$db_name = "canortxw_THR_pawpal_db";
+$username = "canortxw_THR_user";
+$passowrd = "YOUR_SECURE_PASSWORD";
 
 ```
-pawpal/api/uploads/
-```
+
+
+
+### **3. SSL & API Security**
+
+* **HTTPS:** Ensure an SSL certificate (Let's Encrypt) is active. The Flutter app requires `https://` for secure wallet transactions.
+* **API Keys:** Verify `apikey.php` contains your production keys for payment gateways.
+
+---
+
+## 🔌 API Endpoints
+
+Once live, the base URL is: `https://yourdomain.com/pawpal/api/`
+
+| Endpoint | Method | Description |
+| --- | --- | --- |
+| `/login_user.php` | POST | Authenticates user; returns profile and wallet balance. |
+| `/register_user.php` | POST | Registers a new user account. |
+| `/submit_pet.php` | POST | Adds pet listing with JSON images & GPS coords. |
+| `/get_my_pets.php` | GET | Retrieves pets with `searchQuery` & `filterQuery`. |
+| `/donate_pet.php` | POST | Processes Money/Food/Med donations; updates wallet. |
+| `/get_my_donation.php` | GET | Fetches donation history for a specific `userid`. |
+| `/payment.php` | GET | Directs to WebView gateway for wallet top-ups. |
+| `/update_profile.php` | POST | Updates user details and profile image. |
+
 ---
 
 ## 📁 Folder Structure
 
-```
+```text
 pawpal/
-│
-├── api/
-│   ├── dbconnect.php
-│   ├── submit_pet.php
-│   ├── get_my_pets.php
-│   ├── uploads/
-│   │     └── (saved pet images)
-│   └── ...
+├── lib/                  # Flutter Code
+│   ├── models/           # user.dart, mypet.dart, donation.dart
+│   ├── screens/          # loginscreen.dart, mainscreen.dart, etc.
+│   └── myconfig.dart     # Central Server URL Config
+├── assets/               # Branding and Icons
+└── api/                  # PHP Server Files
+    ├── dbconnect.php     # DB Connection Configuration
+    ├── apikey.php        # Third-party Keys (Payment/Maps)
+    ├── uploads/          # Stored Pet/User Images
+    └── *.php             # Functional API Endpoints
+
 ```
 
 ---
 
-5. Ensure this plugin is install and do the configuration based on the platform
+## ✨ Key Features
 
-```
-geocoding: ^4.0.0
-geolocator: ^14.0.2
-http: ^1.6.0
-image_cropper: ^11.0.0
-image_picker: ^1.2.1
-intl: ^0.20.2
-shared_preferences: ^2.5.3
-url_launcher: ^6.3.2
-```
+* **Smart Pet Search:** Filter pets by type (Dog, Cat, Rabbit) and proximity using `geolocator`.
+* **Multi-Image Support:** Up to 3 images per pet with built-in cropping and compression.
+* **Integrated Digital Wallet:** * Balance managed in **Cents** for 100% mathematical precision.
+* Secure top-ups via `webview_flutter`.
 
----
-## 🔌 API Endpoints
 
-| Endpoint               | Method | Description                                              |
-| ---------------------- | ------ | ---------------------------------------------------------|
-| `/api/submit_pet.php`  | POST   | Add new pet with multiple images and required infomation |
-| `/api/get_my_pets.php` | GET    | Retrieve all pets and related user info                  |
-
+* **Community Donations:** Users can donate funds directly to a pet's profile, which is deducted in real-time from their wallet balance.
+* **Auto-Login:** Persistence powered by `SharedPreferences` for a seamless user experience.
 
 ---
 
-# 🐶 Submit Pet API
+## 🧩 Technical Notes
 
-### **URL**
-
-```
-POST /pawpal/api/submit_pet.php
-```
-
-
-### **Required Fields**
-
-| Field         | Type                | Description                    |
-| ------------- | ------------------- | ------------------------------ |
-| `userid`      | int                 | ID of user                     |
-| `name`        | string              | Pet name                       |
-| `type`        | string              | Pet type (dog, cat, etc.)      |
-| `category`    | string              | Category (adopt, lost, donate) |
-| `latitude`    | string              | Pet location latitude          |
-| `longitude`   | string              | Pet location longitude         |
-| `description` | string              | Pet description                |
-| `images`      | JSON array (base64) | List of base64 image strings   |
-
----
-
-## 📤 Sample JSON Request (Flutter)
-
-```dart
-{
-  "userid": "12",
-  "name": "Lucky",
-  "type": "Dog",
-  "category": "Adopt",
-  "latitude": "6.12345",
-  "longitude": "100.12345",
-  "description": "Very friendly dog.",
-  "images": [
-      "iVBORw0KGgoAAAANSUhEUgAABk...",
-      "iVBORw0KGgzDAsdsadadsAAABBB..."
-  ]
-}
-```
-
-Flutter encoding example:
-
-```dart
-http.post(
-  Uri.parse("${Myconfig.baseURL}/pawpal/api/submit_pet.php"),
-  body ： {
-  "userid": userId,
-  "name": petName,
-  "type": petType,
-  "category": category,
-  "latitude": lat.toString(),
-  "longitude": lng.toString(),
-  "description": desc,
-  "images": jsonEncode(base64ImagesList),
-};
-```
-
----
-
-## 🟢 Sample Success Response
-
-```json
-{
-  "success": "true",
-  "message": "Pet added successfully"
-}
-```
-
-## 🔴 Sample Error Response
-
-```json
-{
-  "success": "false",
-  "message": "Pet not added"
-}
-```
-
----
-
-# 🧩 Notes
-
-* All uploaded images are stored inside:
-
-  ```
-  /api/uploads/pet_<id>_<index>.png
-  ```
-* `image_paths` in database is stored as **JSON array** for easy parsing in Flutter.
-
----
+* **Precision:** To avoid floating-point errors, the database and Flutter models store money as `int` (Cents). 1000 cents = RM 10.00.
+* **Images:** Images are converted from `File` to `Base64` strings for transmission and saved as `.png` files on the server to save DB space.
+* **Latency:** The app includes a 10-second timeout for registration and login requests to handle poor network conditions.
