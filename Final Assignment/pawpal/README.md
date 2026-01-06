@@ -1,5 +1,3 @@
----
-
 # PawPal – Flutter Pet Care Companion App
 
 **PawPal** is a cross-platform pet management and community support ecosystem. It enables users to manage pet profiles, facilitate adoptions, and contribute to animal welfare through a secure integrated wallet and donation system.
