@@ -1,0 +1,29 @@
+[03-Jan-2026 03:30:02 UTC] PHP Notice:  Undefined index: billplz in /home3/canortxw/public_html/HouRen/pawpal/api/payment_update.php on line 13
+[03-Jan-2026 03:30:02 UTC] PHP Notice:  Trying to access array offset on value of type null in /home3/canortxw/public_html/HouRen/pawpal/api/payment_update.php on line 13
+[03-Jan-2026 03:30:02 UTC] PHP Notice:  Undefined index: billplz in /home3/canortxw/public_html/HouRen/pawpal/api/payment_update.php on line 14
+[03-Jan-2026 03:30:02 UTC] PHP Notice:  Trying to access array offset on value of type null in /home3/canortxw/public_html/HouRen/pawpal/api/payment_update.php on line 14
+[03-Jan-2026 03:30:02 UTC] PHP Notice:  Undefined index: billplz in /home3/canortxw/public_html/HouRen/pawpal/api/payment_update.php on line 15
+[03-Jan-2026 03:30:02 UTC] PHP Notice:  Trying to access array offset on value of type null in /home3/canortxw/public_html/HouRen/pawpal/api/payment_update.php on line 15
+[03-Jan-2026 03:30:02 UTC] PHP Notice:  Undefined index: billplz in /home3/canortxw/public_html/HouRen/pawpal/api/payment_update.php on line 16
+[03-Jan-2026 03:30:02 UTC] PHP Notice:  Trying to access array offset on value of type null in /home3/canortxw/public_html/HouRen/pawpal/api/payment_update.php on line 16
+[03-Jan-2026 03:30:02 UTC] PHP Notice:  Undefined index: billplz in /home3/canortxw/public_html/HouRen/pawpal/api/payment_update.php on line 19
+[03-Jan-2026 03:30:02 UTC] PHP Notice:  Trying to access array offset on value of type null in /home3/canortxw/public_html/HouRen/pawpal/api/payment_update.php on line 19
+[03-Jan-2026 03:30:02 UTC] PHP Notice:  Undefined index: billplz in /home3/canortxw/public_html/HouRen/pawpal/api/payment_update.php on line 25
+[03-Jan-2026 03:30:02 UTC] PHP Notice:  Trying to access array offset on value of type null in /home3/canortxw/public_html/HouRen/pawpal/api/payment_update.php on line 25
+[03-Jan-2026 03:45:09 UTC] PHP Notice:  Undefined index: email in /home3/canortxw/public_html/HouRen/pawpal/api/payment_update.php on line 6
+[03-Jan-2026 03:45:09 UTC] PHP Notice:  Undefined index: phone in /home3/canortxw/public_html/HouRen/pawpal/api/payment_update.php on line 7
+[03-Jan-2026 03:45:09 UTC] PHP Notice:  Undefined index: name in /home3/canortxw/public_html/HouRen/pawpal/api/payment_update.php on line 8
+[03-Jan-2026 03:45:09 UTC] PHP Notice:  Undefined index: amount in /home3/canortxw/public_html/HouRen/pawpal/api/payment_update.php on line 9
+[03-Jan-2026 03:45:09 UTC] PHP Notice:  Undefined index: userid in /home3/canortxw/public_html/HouRen/pawpal/api/payment_update.php on line 10
+[03-Jan-2026 03:45:09 UTC] PHP Notice:  Undefined index: billplz in /home3/canortxw/public_html/HouRen/pawpal/api/payment_update.php on line 13
+[03-Jan-2026 03:45:09 UTC] PHP Notice:  Trying to access array offset on value of type null in /home3/canortxw/public_html/HouRen/pawpal/api/payment_update.php on line 13
+[03-Jan-2026 03:45:09 UTC] PHP Notice:  Undefined index: billplz in /home3/canortxw/public_html/HouRen/pawpal/api/payment_update.php on line 14
+[03-Jan-2026 03:45:09 UTC] PHP Notice:  Trying to access array offset on value of type null in /home3/canortxw/public_html/HouRen/pawpal/api/payment_update.php on line 14
+[03-Jan-2026 03:45:09 UTC] PHP Notice:  Undefined index: billplz in /home3/canortxw/public_html/HouRen/pawpal/api/payment_update.php on line 15
+[03-Jan-2026 03:45:09 UTC] PHP Notice:  Trying to access array offset on value of type null in /home3/canortxw/public_html/HouRen/pawpal/api/payment_update.php on line 15
+[03-Jan-2026 03:45:09 UTC] PHP Notice:  Undefined index: billplz in /home3/canortxw/public_html/HouRen/pawpal/api/payment_update.php on line 16
+[03-Jan-2026 03:45:09 UTC] PHP Notice:  Trying to access array offset on value of type null in /home3/canortxw/public_html/HouRen/pawpal/api/payment_update.php on line 16
+[03-Jan-2026 03:45:09 UTC] PHP Notice:  Undefined index: billplz in /home3/canortxw/public_html/HouRen/pawpal/api/payment_update.php on line 19
+[03-Jan-2026 03:45:09 UTC] PHP Notice:  Trying to access array offset on value of type null in /home3/canortxw/public_html/HouRen/pawpal/api/payment_update.php on line 19
+[03-Jan-2026 03:45:09 UTC] PHP Notice:  Undefined index: billplz in /home3/canortxw/public_html/HouRen/pawpal/api/payment_update.php on line 25
+[03-Jan-2026 03:45:09 UTC] PHP Notice:  Trying to access array offset on value of type null in /home3/canortxw/public_html/HouRen/pawpal/api/payment_update.php on line 25

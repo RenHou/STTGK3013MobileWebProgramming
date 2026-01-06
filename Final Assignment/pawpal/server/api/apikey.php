@@ -1,0 +1,7 @@
+<?php
+$apikey = '0d2b944b-85dc-4beb-98a3-e437c55b7a80';
+
+$collectionid= 'o3muwivf';
+
+$xkey= 'f34be1ac1027a26d96cd15fbf796dfdd6276bfce0272a17103e380fc932ece21d9d166b90314a57f9890035627f778271071dd09832a5db5b635a7579603a21e';
+?>
