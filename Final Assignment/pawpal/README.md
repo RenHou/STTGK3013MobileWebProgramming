@@ -73,20 +73,24 @@ $passowrd = "YOUR_SECURE_PASSWORD";
 
 ---
 
+
 ## 🔌 API Endpoints
 
-Once live, the base URL is: `https://yourdomain.com/pawpal/api/`
+Once live, the base URL is: `https://canorcannot.com/HouRen/pawpal/api/`
 
-| Endpoint | Method | Description |
-| --- | --- | --- |
-| `/login_user.php` | POST | Authenticates user; returns profile and wallet balance. |
-| `/register_user.php` | POST | Registers a new user account. |
-| `/submit_pet.php` | POST | Adds pet listing with JSON images & GPS coords. |
-| `/get_my_pets.php` | GET | Retrieves pets with `searchQuery` & `filterQuery`. |
-| `/donate_pet.php` | POST | Processes Money/Food/Med donations; updates wallet. |
-| `/get_my_donation.php` | GET | Fetches donation history for a specific `userid`. |
-| `/payment.php` | GET | Directs to WebView gateway for wallet top-ups. |
-| `/update_profile.php` | POST | Updates user details and profile image. |
+| Endpoint | Method | Parameters | Description |
+| --- | --- | --- | --- |
+| `/login_user.php` | POST | `email`, `password` | Authenticates user using SHA1 encryption; returns user object and wallet balance. |
+| `/register_user.php` | POST | `name`, `email`, `phone`, `password` | Checks for existing email and creates a new user record in `tbl_users`. |
+| `/getuserdetails.php` | GET | `userid` | Fetches the latest profile data and wallet balance for a specific user. |
+| `/update_profile.php` | POST | `userid`, `name`, `phone`, `image` | Updates user information and saves base64 encoded profile pictures to the server. |
+| `/submit_pet.php` | POST | `userid`, `name`, `age`, `type`, `category`, `gender`, `health`, `lat`, `lng`, `description`, `images` | Creates a new pet listing. Handles multiple images and saves paths as JSON in the database. |
+| `/get_my_pets.php` | GET | `searchQuery`, `filterQuery` | Retrieves pet listings with optional keyword search and category filtering (Dog, Cat, etc.). |
+| `/request_adopt.php` | POST | `user_id`, `pet_id`, `reason` | Submits an adoption interest request to `tbl_adoptions`. Prevents duplicate requests. |
+| `/donate_pet.php` | POST | `user_id`, `pet_id`, `donation_type`, `amount`, `description` | Processes contributions. If type is 'Money', it validates and deducts from the user's wallet. |
+| `/get_my_donation.php` | GET | `userid` | Joins `tbl_donation` and `tbl_pets` to return a history of a user's contributions. |
+| `/payment.php` | GET | `userid`, `name`, `email`, `phone`, `amount` | Connects to the **Billplz** API to generate a payment bill for wallet top-ups. |
+| `/payment_update.php` | GET | *Billplz Response* | The callback URL that verifies the `x_signature`, updates the user's wallet balance upon success, and generates a web receipt. |
 
 ---
 
